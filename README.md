@@ -19,7 +19,7 @@
           zoom: 6,
         });
 
-        const kmlUrl = "https://script.google.com/macros/s/AKfycbyBuNK0zq6xrVTSuZ79_zpIu7_poxSJHqf0EOz7IP3MIzlj3nsc5B8d1pr51xQHz8Vo/exec"; // Replace this with your KML URL from Apps Script or Drive
+        const kmlUrl = "https://script.google.com/macros/s/AKfycbyBuNK0zq6xrVTSuZ79_zpIu7_poxSJHqf0EOz7IP3MIzlj3nsc5B8d1pr51xQHz8Vo/exec";
 
         const kmlLayer = new google.maps.KmlLayer({
           url: kmlUrl,
