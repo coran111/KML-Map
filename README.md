@@ -1,9 +1,8 @@
-# KML-Map<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Client Map Viewer</title>
+    <title>KML Map Viewer</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       html, body, #map {
         height: 100%;
@@ -11,25 +10,39 @@
         padding: 0;
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmJFBZ0IW0ZHEDOttCmhCWQiH0OJf4VSM"></script>
+  </head>
+  <body>
+    <div id="map"></div>
     <script>
       function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: 53.5, lng: -2 }, // UK center-ish
+          center: { lat: 53.8, lng: -1.5 },
           zoom: 6,
         });
 
-        const kmlUrl = "https://script.google.com/macros/s/AKfycbyBuNK0zq6xrVTSuZ79_zpIu7_poxSJHqf0EOz7IP3MIzlj3nsc5B8d1pr51xQHz8Vo/exec";
+        // Array of KML URLs
+        const kmlFiles = [
+          "https://drive.google.com/file/d/1tspWQyZ1M_e66nCdLSwrgNJvAwdJnhIM/view?usp=drive_link",
+          "https://drive.google.com/file/d/15HDBCf9-HBPXXvwcU9cMTJmcq3zz8S-2/view?usp=drive_link",
+          "https://drive.google.com/file/d/1TkQ3lGQaoEwa9rwbu7SmmyR-CgUkXd1Q/view?usp=sharing",
+          "https://drive.google.com/file/d/1g5Du6xJosan3IEMJXwRqGJWZyryLWAPp/view?usp=sharing",
+          "https://drive.google.com/file/d/1a7juykSEXIGOb27rz8M91boP57X6QfX2/view?usp=sharing",
+          "https://drive.google.com/file/d/1Pnc0BNy1tsGDfyUt_H6VAlsY8eL5v52I/view?usp=sharing"
+        ];
 
-        const kmlLayer = new google.maps.KmlLayer({
-          url: kmlUrl,
-          map: map,
-          preserveViewport: true
+        // Load each KML file as a layer
+        kmlFiles.forEach((url, index) => {
+          new google.maps.KmlLayer({
+            url: url,
+            map: map,
+            preserveViewport: false,
+            zIndex: index + 1, // Ensure layers stack in the order you want
+          });
         });
       }
     </script>
-  </head>
-  <body onload="initMap()">
-    <div id="map"></div>
+    <script async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmJFBZ0IW0ZHEDOttCmhCWQiH0OJf4VSM&callback=initMap">
+    </script>
   </body>
 </html>
